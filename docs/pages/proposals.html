@@ -15,27 +15,35 @@
   </main>
 
   <script>
-  // JSON simplificado embebido para la prueba
+document.addEventListener("DOMContentLoaded", () => {
   const data = {
-  drawings: {
-    "2012": [
-      { 
-        title: "Boceto A", 
-        image: "https://via.placeholder.com/300x200.png?text=Obra+2012", 
-        materials: "lápiz", 
-        dimensions: "20x30" 
-      }
-    ]
-  }
-};
+    drawings: {
+      "2012": [
+        { 
+          title: "Boceto A", 
+          image: "https://via.placeholder.com/300x200.png?text=Obra+2012", 
+          materials: "lápiz", 
+          dimensions: "20x30" 
+        }
+      ]
+    }
+  };
 
   const contenedor = document.getElementById("obras-content");
   const fila = document.createElement("div");
   fila.className = "cover-row";
 
-  img/drawings/2012/12-a.png
+  const obras2012 = data.drawings["2012"];
+  obras2012.forEach(obra => {
+    const item = document.createElement("div");
+    item.className = "cover-item";
+    item.innerHTML = `<img src="${obra.image}" alt="${obra.title}"><div>${obra.title}</div>`;
+    fila.appendChild(item);
+  });
 
   contenedor.appendChild(fila);
-  </script>
+});
+</script>
+
 </body>
 </html>
