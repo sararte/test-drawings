@@ -1,54 +1,54 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Proposals — Drawings</title>
-
-  <link rel="stylesheet" href="../css/proposals.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Drawings Test (mínimo)</title>
+  <style>
+    body { font-family: system-ui, Arial, sans-serif; margin: 24px; }
+    #obras-content { display: grid; gap: 12px; max-width: 600px; }
+    img { display: block; width: 300px; height: 200px; border: 1px solid #ccc; }
+    .caption { font-size: 14px; color: #333; }
+  </style>
 </head>
-<body class="proposals">
-
+<body>
   <h1>Drawings Test</h1>
-  <main id="obras-content">
-    <!-- Aquí se insertarán los covers de dibujos -->
-  </main>
+  <main id="obras-content"></main>
 
   <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const data = {
-    drawings: {
-      "2012": [
-        { 
-          title: "Boceto A", 
-          image: "data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' width='300' height='200'>\
-<rect width='100%' height='100%' fill='#ddd'/>\
-<text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle'\
- font-family='Arial, sans-serif' font-size='20' fill='#333'>Obra 2012</text>\
-</svg>", 
-          materials: "lápiz", 
-          dimensions: "20x30" 
-        }
-      ]
-    }
-  };
+  document.addEventListener("DOMContentLoaded", () => {
+    // Datos incrustados (sin archivos, sin red)
+    const data = {
+      drawings: {
+        "2012": [{
+          title: "Boceto A",
+          image:
+            "data:image/svg+xml;utf8," +
+            "<svg xmlns='http://www.w3.org/2000/svg' width='300' height='200'>" +
+            "<rect width='100%' height='100%' fill='#ddd'/>" +
+            "<text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' " +
+            "font-family='Arial, sans-serif' font-size='20' fill='#333'>Obra 2012</text>" +
+            "</svg>"
+        }]
+      }
+    };
 
-  const contenedor = document.getElementById("obras-content");
-  const fila = document.createElement("div");
-  fila.className = "cover-row";
+    const cont = document.getElementById("obras-content");
+    const obra  = data.drawings["2012"][0];
 
-  const obras2012 = data.drawings["2012"];
-  obras2012.forEach(obra => {
-    const item = document.createElement("div");
-    item.className = "cover-item";
-    item.innerHTML = `<img src="${obra.image}" alt="${obra.title}"><div>${obra.title}</div>`;
-    fila.appendChild(item);
+    const img = document.createElement("img");
+    img.src = obra.image;
+    img.alt = obra.title;
+
+    const cap = document.createElement("div");
+    cap.className = "caption";
+    cap.textContent = obra.title;
+
+    cont.appendChild(img);
+    cont.appendChild(cap);
+
+    console.log("✅ Imagen insertada. complete=", img.complete, " naturalWidth=", img.naturalWidth);
   });
-
-  contenedor.appendChild(fila);
-});
-</script>
-
+  </script>
 </body>
 </html>
