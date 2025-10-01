@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proposals — Drawings</title>
+
+  <link rel="stylesheet" href="../css/proposals.css" />
+</head>
+<body class="proposals">
+
+  <h1>Drawings Test</h1>
+  <main id="obras-content">
+    <!-- Aquí se insertarán los covers de dibujos -->
+  </main>
+
+  <script>
+  // JSON simplificado embebido para la prueba
+  const data = {
+    drawings: {
+      "2012": [
+        { title: "Boceto A", image: "../img/drawings/2012/12-a.png", materials: "lápiz", dimensions: "20x30" }
+      ]
+    }
+  };
+
+  const contenedor = document.getElementById("obras-content");
+  const fila = document.createElement("div");
+  fila.className = "cover-row";
+
+  const obras2012 = data.drawings["2012"];
+  obras2012.forEach(obra => {
+    const item = document.createElement("div");
+    item.className = "cover-item";
+    item.innerHTML = `<img src="${obra.image}" alt="${obra.title}"><div>${obra.title}</div>`;
+    fila.appendChild(item);
+  });
+
+  contenedor.appendChild(fila);
+  </script>
+</body>
+</html>
